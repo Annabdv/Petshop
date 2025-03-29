@@ -5,7 +5,6 @@ public class Banho extends ServicoPetshop {
     private double preco;
 
     public Banho(int codigo, TamanhoDoAnimal tamanhoAnimal, TamanhoPelo tamanhoPelo) {
-        // Chama o construtor da superclasse primeiro
         super(codigo, tamanhoAnimal);
         this.tamanhoPelo = tamanhoPelo;
         this.preco = calculaPreco();

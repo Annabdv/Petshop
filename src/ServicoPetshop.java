@@ -26,5 +26,9 @@ public abstract class ServicoPetshop {
     }
 
     public abstract String getDescricao();
+
+    public void teste() {
+        System.out.println("Teste apaga isso depois");
+    }
 }
 

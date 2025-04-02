@@ -1,11 +1,11 @@
+import java.time.LocalDate;
 import java.util.Objects;
 
-public class Banho extends ServicoPetshop {
-    private TamanhoPelo tamanhoPelo;
+public class Banho extends ServicoPetshop implements ServicoPetshopIF {
+    public TamanhoPelo tamanhoPelo;
     private double preco;
 
     public Banho(int codigo, TamanhoDoAnimal tamanhoAnimal, TamanhoPelo tamanhoPelo) {
-        // Chama o construtor da superclasse primeiro
         super(codigo, tamanhoAnimal);
         this.tamanhoPelo = tamanhoPelo;
         this.preco = calculaPreco();
@@ -16,31 +16,31 @@ public class Banho extends ServicoPetshop {
         double precoBanho = 0.0;
         if (getTamanhoAnimal() == TamanhoDoAnimal.PEQUENO) {
             if (tamanhoPelo == TamanhoPelo.CURTO) {
-                precoBanho = 50.0;
+                precoBanho += 50.0;
             } else if (tamanhoPelo == TamanhoPelo.MEDIO) {
-                precoBanho = 65.0;
+                precoBanho += 65.0;
             } else if (tamanhoPelo == TamanhoPelo.LONGO) {
-                precoBanho = 75.0;
+                precoBanho += 75.0;
             } else {
                 throw new IllegalArgumentException("O tamanho do pelo é inválido");
             }
         } else if (getTamanhoAnimal() == TamanhoDoAnimal.MEDIO) {
             if (tamanhoPelo == TamanhoPelo.CURTO) {
-                precoBanho = 60.0;
+                precoBanho += 60.0;
             } else if (tamanhoPelo == TamanhoPelo.MEDIO) {
-                precoBanho = 75.0;
+                precoBanho += 75.0;
             } else if (tamanhoPelo == TamanhoPelo.LONGO) {
-                precoBanho = 85.0;
+                precoBanho += 85.0;
             } else {
                 throw new IllegalArgumentException("O tamanho do pelo é invalido.");
             }
         } else if (getTamanhoAnimal() == TamanhoDoAnimal.GRANDE) {
             if (tamanhoPelo == TamanhoPelo.CURTO) {
-                precoBanho = 75.0;
+                precoBanho += 75.0;
             } else if (tamanhoPelo == TamanhoPelo.MEDIO) {
-                precoBanho = 85.0;
+                precoBanho += 85.0;
             } else if (tamanhoPelo == TamanhoPelo.LONGO) {
-                precoBanho = 95.0;
+                precoBanho += 95.0;
             } else {
                 throw new IllegalArgumentException("O tamanho do pelo é inválido.");
             }
@@ -50,9 +50,17 @@ public class Banho extends ServicoPetshop {
         return precoBanho;
     }
 
+    public TamanhoPelo getTamanhoPelo() {
+        return tamanhoPelo;
+    }
+
+    public void setTamanhoPelo(TamanhoPelo tamanhoPelo) {
+        this.tamanhoPelo = tamanhoPelo;
+    }
+
     @Override
     public String getDescricao() {
-        return "O serviço de banho para animal de " + getTamanhoAnimal() + " porte e pelo de tamanho " +tamanhoPelo+ " custa R$ " +calculaPreco();
+        return "Banho para animal de " + getTamanhoAnimal() + " porte e pelo de tamanho " +tamanhoPelo+ ", custa R$ " +calculaPreco();
     }
 
     @Override
@@ -72,6 +80,6 @@ public class Banho extends ServicoPetshop {
 
     @Override
     public int hashCode() {
-        return Objects.hash(tamanhoPelo, preco);
+        return Objects.hash(super.hashCode(), tamanhoPelo);
     }
 }

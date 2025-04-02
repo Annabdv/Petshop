@@ -1,4 +1,6 @@
-public class Tosa extends ServicoPetshop {
+import java.time.LocalDate;
+
+public class Tosa extends ServicoPetshop implements ServicoPetshopIF {
 
     public Tosa(int codigo, TamanhoDoAnimal tamanhoAnimal) {
         super(codigo, tamanhoAnimal);
@@ -6,19 +8,22 @@ public class Tosa extends ServicoPetshop {
 
     @Override
     public double calculaPreco() {
+        double preco = 0.0;
         if (getTamanhoAnimal() == TamanhoDoAnimal.PEQUENO) {
-            return 30.00;
+            preco += 30.00;
         } else if (getTamanhoAnimal() == TamanhoDoAnimal.MEDIO) {
-            return 40.00;
+            preco += 40.00;
         } else if (getTamanhoAnimal() == TamanhoDoAnimal.GRANDE) {
-            return 50.00;
+            preco += 50.00;
         } else {
             throw new IllegalArgumentException("Tamanho do animal inválido.");
         }
+        return preco;
     }
 
     @Override
     public String getDescricao() {
-        return "Tosa para animal de " + getTamanhoAnimal() + ". Preço: R$ " + calculaPreco();
+        return "Tosa para animal de " + getTamanhoAnimal() + " porte, custa R$ " + calculaPreco();
     }
 }
+

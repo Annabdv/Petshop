@@ -24,4 +24,10 @@ public class InventarioPetshop {
         }
         return lista;
     }
+
+    public void exibirInventario() {
+    }
+
+    public void adicionaServico(String descricaoServico, double precoServico) {
+    }
 }
